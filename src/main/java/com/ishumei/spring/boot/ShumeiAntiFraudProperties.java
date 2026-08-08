@@ -20,7 +20,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 /**
  * https://www.ishumei.com/
  * 
- * @author ： <a href="https://github.com/easy-4-java">hiwepy</a>
+ * @author [@Loong Wan](https://github.com/loong10k)
  */
 @ConfigurationProperties(ShumeiAntiFraudProperties.PREFIX)
 public class ShumeiAntiFraudProperties {
