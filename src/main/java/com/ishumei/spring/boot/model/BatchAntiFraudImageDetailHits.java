@@ -21,13 +21,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Model class for BatchAntiFraudImageDetailHits.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BatchAntiFraudImageDetailHits {
 
 	/**
-	 * 拦截的风险原因解释;仅供人了解风险原因时作为参考，程序请勿依赖该参数的值做逻辑处理
+	 * Human-readable explanation of the risk reason; for reference only, do not use in logic.
 	 */
 	@JsonProperty("description")
 	private String description;
@@ -36,26 +42,25 @@ public class BatchAntiFraudImageDetailHits {
 	private String descriptionV2;
 	
 	/**
-	 * 策略规则标识; 用来标识命中的策略规则; 注：该参数为旧版API返回参数，兼容保留，后续版本会取消，请勿依赖此参数，仅供参考
+	 * Strategy rule id identifying the matched rule. Legacy API field kept for compatibility; do not depend on it.
 	 */
 	@JsonProperty("model")
 	private String model;
 
 	/**
-	 * 风险级别 可能返回值： PASS：正常内容，建议直接放行 REVIEW：可疑内容，建议人工审核 REJECT：违规内容，建议直接拦截
+	 * Risk level: PASS (normal, allow), REVIEW (suspicious, manual review), REJECT (violating, block).
 	 */
 	@JsonProperty("riskLevel")
 	private String riskLevel;
 
 	/**
-	 * 标识风险类型，可能取值： 正常：0， 涉政：100， 色情：200， 性感：210， 广告：300， 二维码：310， 水印：320， 暴恐：400，
-	 * 违规：500， 不良场景 ：510， 黑名单：700， 白名单：710， 高危账号：800， 自定义：900
+	 * Risk type. Values: normal=0, political=100, porn=200, sexy=210, ad=300, qrcode=310, watermark=320, violence=400, violation=500, bad-scene=510, blacklist=700, whitelist=710, high-risk-account=800, custom=900.
 	 */
 	@JsonProperty("riskType")
 	private int riskType;
 	
 	/**
-	 * 风险分数；取值范围[0,1000]，分数越高风险越大
+	 * Risk score in [0,1000]; higher means riskier.
 	 */
 	@JsonProperty("score")
 	private int score;

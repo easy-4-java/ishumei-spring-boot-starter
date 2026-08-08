@@ -7,7 +7,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
- * 响应结果
+ * Moderation response result.
+ */
+/**
+ * Model class for BatchAntiFraudImageItem.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -15,43 +21,42 @@ import lombok.Data;
 public class BatchAntiFraudImageItem {
 
 	/**
-	 * 用户指定的图片标识；当callback存在时，在回调请求中向用户返回；不支持特殊字符
+	 * User-specified image id; returned in the callback when one is configured; special characters are not supported.
 	 */
 	@JsonProperty("btId")
 	private String btId;
 
 	/**
-	 * 返回码，详见常见错误码除message和requestId之外的字段，只有当code为1100时才会存在 code 见：
-	 * https://www.ishumei.com/help/documents.html?id=24000
+	 * Return code (see https://www.ishumei.com/help/documents.html?id=24000). Only present when code is 1100.
 	 */
 	@JsonProperty("code")
 	private String code;
 
 	/**
-	 * 风险详情（callback 不存在或者为空并且 code 为 1100 时存在）
+	 * Risk detail (present when no callback is configured and code is 1100).
 	 */
 	@JsonProperty("detail")
 	private BatchAntiFraudImageDetail detail;
 
 	/**
-	 * 返回码详情描述
+	 * Return code description.
 	 */
 	@JsonProperty("message")
 	private String message;
 	/**
-	 * 请求唯一标识，后续可用于数据查询
+	 * Unique request id, usable for later data queries.
 	 */
 	@JsonProperty("requestId")
 	private String requestId;
 	
 	/**
-	 * 风险级别 可能返回值： PASS：正常内容，建议直接放行 REVIEW：可疑内容，建议人工审核 REJECT：违规内容，建议直接拦截
+	 * Risk level: PASS (normal, allow), REVIEW (suspicious, manual review), REJECT (violating, block).
 	 */
 	@JsonProperty("riskLevel")
 	private String riskLevel;
 	
 	/**
-	 * 风险分数；取值范围[0,1000]，分数越高风险越大
+	 * Risk score in [0,1000]; higher means riskier.
 	 */
 	@JsonProperty("score")
 	private int score;

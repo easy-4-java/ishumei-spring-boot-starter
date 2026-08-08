@@ -6,26 +6,32 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
- * 识别请求
+ * Moderation request base.
+ */
+/**
+ * Model class for AntiFraudRequest.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class AntiFraudRequest {
 
 	/**
-	 * 应用标识； 用于区分相同公司的不同应用，该参数传递值可与数美服务协商用于区分应用； 默认应用值：default
+	 * Application id used to distinguish applications of the same company (agreed with Shumei). Defaults to {@code default}.
 	 */
 	@JsonProperty("appId")
 	private String appId = "default";
 	
 	/**
-	 * 公司密钥；用于权限认证，开通账号服务时由数美提供
+	 * Company access key for authentication; provided by Shumei when the account is opened.
 	 */
 	@JsonProperty("accessKey")
 	private String accessKey;
 
 	/**
-	 * 平台业务类型，可选值(必须大写) 直播：ZHIBO 电商：ECOM 游戏：GAME 新闻资讯 ：NEWS 论坛：FORUM 社交 ：SOCIAL
+	 * Platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL.
 	 */
 	@JsonProperty("type")
 	private String type;

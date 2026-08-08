@@ -20,18 +20,24 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
+/**
+ * Model class for AntiFraudTextWordPostitionsDetail.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudTextWordPostitionsDetail {
 
 	/**
-	 * 命中敏感词
+	 * Matched sensitive word.
 	 */
 	@JsonProperty("word")
 	private String word;
 	
 	/**
-	 * 命中敏感词位置
+	 * Position of the matched sensitive word.
 	 */
 	@JsonProperty("position")
 	private String position;

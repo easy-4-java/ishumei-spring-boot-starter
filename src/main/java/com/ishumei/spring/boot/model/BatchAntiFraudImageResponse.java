@@ -10,7 +10,13 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
 /**
- * 响应结果
+ * Moderation response result.
+ */
+/**
+ * Model class for BatchAntiFraudImageResponse.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -18,32 +24,31 @@ import lombok.Data;
 public class BatchAntiFraudImageResponse {
 
 	/**
-	 * 返回码，详见常见错误码除message和requestId之外的字段，只有当code为1100时才会存在 code 见：
-	 * https://www.ishumei.com/help/documents.html?id=24000
+	 * Return code (see https://www.ishumei.com/help/documents.html?id=24000). Only present when code is 1100.
 	 */
 	@JsonProperty("code")
 	private String code;
 
 	/**
-	 * 返回码详情描述
+	 * Return code description.
 	 */
 	@JsonProperty("message")
 	private String message;
 
 	/**
-	 * 请求唯一标识，后续可用于数据查询
+	 * Unique request id, usable for later data queries.
 	 */
 	@JsonProperty("requestId")
 	private String requestId;
 
 	/**
-	 * 每张图片的识别结果（code 为 1100 时存在）
+	 * Per-image recognition results (present when code is 1100).
 	 */
 	@JsonProperty("imgs")
 	private List<BatchAntiFraudImageItem> imgs;
 
 	/**
-	 * 整形数组，长度为 4，分别表示一次批量图片 请求中拒绝数、审核数、通过数（code 为 1100 时存在）和错误数
+	 * Integer array of length 4: reject count, review count, pass count (when code is 1100) and error count.
 	 */
 	@JsonProperty("statistics")
 	private List<Integer> statistics;

@@ -14,10 +14,23 @@ import com.fasterxml.jackson.databind.SerializationFeature;
 import okhttp3.OkHttpClient;
 
 
+/**
+ * Spring Boot auto-configuration for the Shumei (数美) anti-fraud/content-moderation service.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Configuration
 @EnableConfigurationProperties(ShumeiAntiFraudProperties.class)
 public class ShumeiAntiFraudAutoConfiguration {
 
+	/**
+	 * Creates the {@link ShumeiAntiFraudTemplate} bean, reusing an existing
+	 * {@link OkHttpClient} when available or creating a default one.
+	 * @param properties the Shumei anti-fraud properties
+	 * @param okhttp3ClientProvider provider for the optional OkHttp client
+	 * @return the configured Shumei anti-fraud template
+	 */
 	@Bean
 	public ShumeiAntiFraudTemplate shumeiAntiFraudTemplate(ShumeiAntiFraudProperties properties,
 														   ObjectProvider<OkHttpClient> okhttp3ClientProvider) {

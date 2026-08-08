@@ -35,25 +35,33 @@ import com.ishumei.spring.boot.model.BatchAntiFraudImageResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * Tim 接口集成 1、帐号管理
- * https://cloud.tencent.com/document/product/269/42440
+ * Image moderation operations for the Shumei (数美) anti-fraud service.
+ * <p>See <a href="https://www.ishumei.com/help/documents.html?id=21210">the image API reference</a>.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @Slf4j
 public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 
+	/**
+	 * Creates image-moderation operations bound to the given template.
+	 * @param timTemplate the template used to execute Shumei requests
+	 */
 	public ShumeiAntiFraudImageOperations(ShumeiAntiFraudTemplate timTemplate) {
 		super(timTemplate);
 	}
 
 	/**
-	 * 1、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
-	 * @throws IOException
-	 * @throws UnsupportedEncodingException
+	 * 1. Image moderation from a {@link File}. The file is Base64-encoded before submission.
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param img the image to check. Supports jpg, jpeg, jp2, png, webp, gif, bmp, tiff, tif, dib,
+	 *            ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
+	 * @return the moderation response
+	 * @throws IOException when reading the file fails
+	 * @throws UnsupportedEncodingException when the file cannot be Base64-encoded
 	 */
 	public AntiFraudImageResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
@@ -61,14 +69,15 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	}
 
 	/**
-	 * 2、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
-	 * @throws IOException
-	 * @throws UnsupportedEncodingException
+	 * 2. Image moderation from an {@link InputStream}. The stream is Base64-encoded before submission.
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param img the image to check. Supports jpg, jpeg, jp2, png, webp, gif, bmp, tiff, tif, dib,
+	 *            ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
+	 * @return the moderation response
+	 * @throws IOException when reading the stream fails
+	 * @throws UnsupportedEncodingException when the stream cannot be Base64-encoded
 	 */
 	public AntiFraudImageResponse antiFraud(String type, String tokenId, InputStream img) throws UnsupportedEncodingException, IOException {
 		String imgBase64 = new String(Base64.getEncoder().encode(FileCopyUtils.copyToByteArray(img)), "ISO-8859-1");
@@ -76,12 +85,13 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	}
 
 	/**
-	 * 3、智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
+	 * 3. Image moderation from a Base64-encoded string or image URL.
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param img the image to check: a Base64-encoded string or a URL. Supports jpg, jpeg, jp2, png,
+	 *            webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
+	 * @return the moderation response
 	 */
 	public AntiFraudImageResponse antiFraud(String type, String tokenId, String img) {
 
@@ -102,12 +112,13 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 
 
 	/**
-	 * 3、智能图片识别test
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param img 要检测的图片；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
+	 * 3b. Image moderation test entry point (same payload as {@link #antiFraud(String, String, String)}).
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param img the image to check: a Base64-encoded string or a URL. Supports jpg, jpeg, jp2, png,
+	 *            webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
+	 * @return the moderation response
 	 */
 	public AntiFraudImageResponse antiFraudTest(String type, String tokenId, String img) {
 
@@ -128,12 +139,15 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 	}
 
 	/**
-	 * 4、批量智能图片识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  DEFAULT：默认识别涉政、色情、广告，等价 于 POLITICS_PORN_AD POLITICS：涉政识别 PORN：色情识别 OCR：图片中的 OCR 文字识别 AD：广告识别 LOGO：视频水印 logo 识别 BEHAVIOR：不良场景识别，支持吸烟、喝酒、 赌博、吸毒、避孕套和无意义画面 通过下划线连接，如 AD_PORN_POLITICS 用于 广告、色情和涉政组合识别 注意这里 POLITICS 实际上等价于以下两个类 型：PERSON：涉政人脸识别 VIOLENCE：暴恐识别
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param imgs 要检测的图片集合；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
+	 * 4. Batch image moderation. Each image gets a derived btId (md5 of the image content).
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type recognition types joined by underscore, e.g. {@code AD_PORN_POLITICS}.
+	 *             {@code DEFAULT} = POLITICS_PORN_AD. {@code POLITICS} = {@code PERSON} + {@code VIOLENCE}.
+	 *             Others: {@code PORN}, {@code OCR}, {@code AD}, {@code LOGO}, {@code BEHAVIOR}.
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param imgs the images to check: Base64-encoded strings or URLs. Supports jpg, jpeg, jp2, png,
+	 *             webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
+	 * @return the batch moderation response
 	 */
 	public BatchAntiFraudImageResponse antiFraud(String type, String tokenId, List<String> imgs) {
 
@@ -162,12 +176,15 @@ public class ShumeiAntiFraudImageOperations extends ShumeiAntiFraudOperations {
 
 
 	/**
-	 * 5、批量智能图片识别（每张图片对应用户ID）
-	 * API：https://www.ishumei.com/help/documents.html?id=21210
-	 * @param type  DEFAULT：默认识别涉政、色情、广告，等价 于 POLITICS_PORN_AD POLITICS：涉政识别 PORN：色情识别 OCR：图片中的 OCR 文字识别 AD：广告识别 LOGO：视频水印 logo 识别 BEHAVIOR：不良场景识别，支持吸烟、喝酒、 赌博、吸毒、避孕套和无意义画面 通过下划线连接，如 AD_PORN_POLITICS 用于 广告、色情和涉政组合识别 注意这里 POLITICS 实际上等价于以下两个类 型：PERSON：涉政人脸识别 VIOLENCE：暴恐识别
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param imgs 要检测的图片集合；可使用图片的base64编码或者图片的url链接；支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；建议图片像素不小于256*256
-	 * @return
+	 * 5. Batch image moderation with per-image request items (each carries its own user id).
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21210">image moderation</a>.</p>
+	 * @param type recognition types joined by underscore, e.g. {@code AD_PORN_POLITICS}.
+	 *             {@code DEFAULT} = POLITICS_PORN_AD. {@code POLITICS} = {@code PERSON} + {@code VIOLENCE}.
+	 *             Others: {@code PORN}, {@code OCR}, {@code AD}, {@code LOGO}, {@code BEHAVIOR}.
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param imgs the per-image request items (Base64-encoded strings or URLs). Supports jpg, jpeg,
+	 *             jp2, png, webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended 256x256+ pixels.
+	 * @return the batch moderation response
 	 */
 	public BatchAntiFraudImageResponse antiFrauds(String type, String tokenId, List<AntiFraudImageRequestItem> imgs) {
 

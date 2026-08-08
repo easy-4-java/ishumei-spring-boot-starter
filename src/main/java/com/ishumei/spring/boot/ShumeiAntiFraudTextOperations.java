@@ -22,36 +22,45 @@ import com.ishumei.spring.boot.model.AntiFraudTextRequestData;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- *     智能文本识别
- * https://www.ishumei.com/help/documents.html?id=21110
+ * Text moderation operations for the Shumei (数美) anti-fraud service.
+ * <p>See <a href="https://www.ishumei.com/help/documents.html?id=21110">the text API reference</a>.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @Slf4j
 public class ShumeiAntiFraudTextOperations extends ShumeiAntiFraudOperations {
 
+	/**
+	 * Creates text-moderation operations bound to the given template.
+	 * @param timTemplate the template used to execute Shumei requests
+	 */
 	public ShumeiAntiFraudTextOperations(ShumeiAntiFraudTemplate timTemplate) {
 		super(timTemplate);
 	}
 
 	/**
-	 * 1、智能文本识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21110
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param nickname 用户昵称；强烈建议传递此参数，几乎所有平台的恶意用户都会通过昵称散播垃圾信息，存在涉政违禁和导流信息等风险
-	 * @return
+	 * 1. Text moderation using the nickname as the text to check.
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21110">text moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param nickname user nickname. Malicious users often spread spam/political/trafficking info
+	 *                 via nicknames, so this parameter is strongly recommended.
+	 * @return the moderation response
 	 */
 	public AntiFraudResponse antiFraud(String type, String tokenId, String nickname) {
 		return this.antiFraud(type, tokenId, nickname, nickname);
 	}
 
 	/**
-	 * 2、智能文本识别
-	 * API：https://www.ishumei.com/help/documents.html?id=21110
-	 * @param type  平台业务类型，可选值(必须大写)；直播：ZHIBO、电商：ECOM、游戏：GAME、新闻资讯 ：NEWS、论坛：FORUM、社交 ：SOCIAL
-	 * @param tokenId 客户端用户唯一标识；用于用户行为分析，建议传入用户UID；注：不同用户务必传入不同的tokenId对其进行唯一标识
-	 * @param nickname 用户昵称；强烈建议传递此参数，几乎所有平台的恶意用户都会通过昵称散播垃圾信息，存在涉政违禁和导流信息等风险
-	 * @param text 要检测的文本内容；文本上限2W字
-	 * @return
+	 * 2. Text moderation.
+	 * <p>API: <a href="https://www.ishumei.com/help/documents.html?id=21110">text moderation</a>.</p>
+	 * @param type platform business type (uppercase): ZHIBO, ECOM, GAME, NEWS, FORUM, SOCIAL
+	 * @param tokenId unique client user id (for behaviour analysis); pass a distinct value per user
+	 * @param nickname user nickname. Malicious users often spread spam/political/trafficking info
+	 *                 via nicknames, so this parameter is strongly recommended.
+	 * @param text the text to check; up to 20000 characters
+	 * @return the moderation response
 	 */
 	public AntiFraudResponse antiFraud(String type, String tokenId, String nickname, String text) {
 

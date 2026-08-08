@@ -23,13 +23,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Model class for BatchAntiFraudImageDetail.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class BatchAntiFraudImageDetail {
 
 	/**
-	 * 拦截的风险原因解释;仅供人了解风险原因时作为参考，程序请勿依赖该参数的值做逻辑处理
+	 * Human-readable explanation of the risk reason; for reference only, do not use in logic.
 	 */
 	@JsonProperty("description")
 	private String description;
@@ -38,140 +44,139 @@ public class BatchAntiFraudImageDetail {
 	private String descriptionV2;
 
 	/**
-	 * OCR 识别出的文字，可根据需求返回该参 数
+	 * OCR-recognised text, returned on demand.
 	 */
 	@JsonProperty("text")
 	private String text;
 
 	/**
-	 * 色情识别标签，标识色情识别结果，可选值： "色情"、"性感"、"正常"，可根据需求返回 该参
+	 * Porn label. Values: "porn", "sexy", "normal"; returned on demand.
 	 */
 	@JsonProperty("pornLabel")
 	private String pornLabel;
 
 	/**
-	 * 色情图片概率，可根据需求返回该参数
+	 * Probability of pornographic image; returned on demand.
 	 */
 	@JsonProperty("pornRate")
 	private float pornRate;
 
 	/**
-	 * 性感图片概率，可根据需求返回该参数
+	 * Probability of sexy image; returned on demand.
 	 */
 	@JsonProperty("sexyRate")
 	private float sexyRate;
 
 	/**
-	 * 正常图片概率，可根据需求返回该参数
+	 * Probability of normal image; returned on demand.
 	 */
 	@JsonProperty("normalRate")
 	private float normalRate;
 
 	/**
-	 * 最相似的涉政人物名称，可根据需求返回该 参数
+	 * Name of the most similar political figure; returned on demand.
 	 */
 	@JsonProperty("polityName")
 	private String polityName;
 
 	/**
-	 * 最相似的涉政人物概率，可根据需求返回该 参数
+	 * Probability of the most similar political figure; returned on demand.
 	 */
 	@JsonProperty("polityRate")
 	private float polityRate;
 
 	/**
-	 * 暴恐识别标签，标识暴恐识别结果，可选值： "暴乱场景"、"国旗国徽"、"军装"、"恐怖组 织"、"枪支刀具"、"血腥场景"、”游戏枪支 刀具”、"中国地图"、"坦克"、"蜡烛"、"制服 "、"正常"，可根据需求返回该参数
+	 * Violence label. Values: "riot", "flag", "uniform", "terrorist-org", "weapon", "blood", "game-weapon", "china-map", "tank", "candle", "uniform", "normal"; returned on demand.
 	 */
 	@JsonProperty("violenceLabel")
 	private String violenceLabel;
 
 	/**
-	 * 暴乱场景概率，可根据需求返回该参数
+	 * Probability of riot scene; returned on demand.
 	 */
 	@JsonProperty("rebelRate")
 	private float rebelRate;
 
 	/**
-	 * 国旗国徽概率，可根据需求返回该参数
+	 * Probability of national flag/emblem; returned on demand.
 	 */
 	@JsonProperty("flagRate")
 	private float flagRate;
 
 	/**
-	 * 军装概率，可根据需求返回该参数
+	 * Probability of military uniform; returned on demand.
 	 */
 	@JsonProperty("armyRate")
 	private float armyRate;
 
 	/**
-	 * 恐怖组织概率，可根据需求返回该参数
+	 * Probability of terrorist organisation; returned on demand.
 	 */
 	@JsonProperty("terrorismRate")
 	private float terrorismRate;
 
 	/**
-	 * 枪支刀具概率，可根据需求返回该参数
+	 * Probability of weapon (gun/knife); returned on demand.
 	 */
 	@JsonProperty("weaponRate")
 	private float weaponRate;
 
 	/**
-	 * 血腥场景概率，可根据需求返回该参数
+	 * Probability of bloody scene; returned on demand.
 	 */
 	@JsonProperty("bloodRate")
 	private float bloodRate;
 
 	/**
-	 * 游戏枪支刀具概率，可根据需求返回该参数
+	 * Probability of in-game weapon; returned on demand.
 	 */
 	@JsonProperty("gameWeaponRate")
 	private float gameWeaponRate;
 
 	/**
-	 * 中国地图概率，可根据需求返回该参数
+	 * Probability of China map; returned on demand.
 	 */
 	@JsonProperty("chinamapRate")
 	private float chinamapRate;
 
 	/**
-	 * 坦克概率，可根据需求返回该参数
+	 * Probability of tank; returned on demand.
 	 */
 	@JsonProperty("tankRate")
 	private float tankRate;
 
 	/**
-	 * 蜡烛概率，可根据需求返回该参数
+	 * Probability of candle; returned on demand.
 	 */
 	@JsonProperty("candleRate")
 	private float candleRate;
 
 	/**
-	 * 制服概率，可根据需求返回该参数
+	 * Probability of uniform; returned on demand.
 	 */
 	@JsonProperty("uniformRate")
 	private float uniformRate;
 
 	/**
-	 * 非暴恐图片概率，可根据需求返回该参数
+	 * Probability of non-violent image; returned on demand.
 	 */
 	@JsonProperty("nonViolenceRate")
 	private float nonViolenceRate;
 
 	/**
-	 * 新版策略规则风险原因描述；注：该参数为新版API返回参数，过渡阶段只有新策略才会返回
+	 * New strategy rule risk description (new API field; only new strategies return it during transition).
 	 */
 	@JsonProperty("hits")
 	private List<BatchAntiFraudImageDetailHits> hits;
 
 	/**
-	 * 策略规则标识; 用来标识命中的策略规则; 注：该参数为旧版API返回参数，兼容保留，后续版本会取消，请勿依赖此参数，仅供参考
+	 * Strategy rule id identifying the matched rule. Legacy API field kept for compatibility; do not depend on it.
 	 */
 	@JsonProperty("model")
 	private String model;
 
 	/**
-	 * 标识风险类型，可能取值： 正常：0， 涉政：100， 色情：200， 性感：210， 广告：300， 二维码：310， 水印：320， 暴恐：400，
-	 * 违规：500， 不良场景 ：510， 黑名单：700， 白名单：710， 高危账号：800， 自定义：900
+	 * Risk type. Values: normal=0, political=100, porn=200, sexy=210, ad=300, qrcode=310, watermark=320, violence=400, violation=500, bad-scene=510, blacklist=700, whitelist=710, high-risk-account=800, custom=900.
 	 */
 	@JsonProperty("riskType")
 	private int riskType;

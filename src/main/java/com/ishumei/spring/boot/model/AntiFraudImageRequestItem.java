@@ -20,26 +20,30 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
+/**
+ * Model class for AntiFraudImageRequestItem.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudImageRequestItem {
 
 	/**
-	 * 要检测的图片； 可使用图片的base64编码或者图片的url链接；
-	 * 支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；
-	 * 建议图片像素不小于256*256
+	 * Image to check: a Base64-encoded string or a URL. Supports jpg, jpeg, jp2, png, webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
 	 */
 	@JsonProperty("img")
 	private String img;
 	
 	/**
-	 * 客户端用户唯一标识，用于用户行为分析，建 议传入用户 UID 注：不同用户务必传入不同的 tokenId 对其进 行唯一标识
+	 * Unique client user id used for behaviour analysis (pass the user UID). Different users must use different tokenIds.
 	 */
 	@JsonProperty("tokenId")
 	private String tokenId;
 
 	/**
-	 * 用户指定的图片标识；当callback存在时，在回调请求中向用户返回；不支持特殊字符
+	 * User-specified image id; returned in the callback when one is configured; special characters are not supported.
 	 */
 	@JsonProperty("btId")
 	private String btId;

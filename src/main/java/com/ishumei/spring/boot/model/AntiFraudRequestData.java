@@ -20,85 +20,90 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
+/**
+ * Model class for AntiFraudRequestData.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @Data
 public class AntiFraudRequestData {
 
 	/**
-	 * 客户端用户唯一标识，用于用户行为分析，建 议传入用户 UID 注：不同用户务必传入不同的 tokenId 对其进 行唯一标识
+	 * Unique client user id used for behaviour analysis (pass the user UID). Different users must use different tokenIds.
 	 */
 	@JsonProperty("tokenId")
 	private String tokenId;
 
 	/**
-	 * 数据场景，取值需要与数美协商
+	 * Data scenario; the value must be agreed with Shumei.
 	 */
 	@JsonProperty("channel")
 	private String channel;
 
 	/**
-	 * 客户端IP;该参数用于IP维度的用户行为分析
+	 * Client IP used for IP-based behaviour analysis.
 	 */
 	@JsonProperty("ip")
 	private String ip;
 
 	/**
-	 * 用户手机号；可用于比对数美手机号黑库
+	 * User phone number; can be matched against Shumei's phone blacklist.
 	 */
 	@JsonProperty("phone")
 	private String phone;
 
 	/**
-	 * 强烈建议传入；数美设备指纹标识，用于用户行为分析；当恶意用户篡改mac、imei等设备信息时；使用deviceId能够发现和识别此类恶意行为，同时可用于比对数美设备指纹黑名单
+	 * Shumei device fingerprint (strongly recommended). Detects malicious users that spoof mac/imei and can be matched against the device-fingerprint blacklist.
 	 */
 	@JsonProperty("deviceId")
 	private String deviceId;
 
 	/**
-	 * 客户端IP;该参数用于IP维度的用户行为分析
+	 * Client IP used for IP-based behaviour analysis.
 	 */
 	@JsonProperty("receiveTokenId")
 	private String receiveTokenId;
 
 	/**
-	 *用户等级；针对不同等级的用户可配置不同拦截策略
+	 *User level; different interception strategies can be configured per level.
 	 */
 	@JsonProperty("level")
 	private String level;
 
 	/**
-	 * 帐号注册时间; 强烈建议传递此参数，新注册帐号的异常操作风险较高
+	 * Account registration time. Strongly recommended; newly registered accounts carry higher risk.
 	 */
 	@JsonProperty("registerTime")
 	private String registerTime;
 
 	/**
-	 * 帐号好友数; 社交场景强烈推荐传此参数，标识用户质量
+	 * Number of friends. Strongly recommended for social scenarios to indicate user quality.
 	 */
 	@JsonProperty("friendNum")
 	private String friendNum;
 
 	/**
-	 * 帐号粉丝数; 直播/社区场景强烈推荐传此参数，标识用户质量
+	 * Number of fans. Strongly recommended for live/community scenarios to indicate user quality.
 	 */
 	@JsonProperty("fansNum")
 	private String fansNum;
 
 	/**
-	 * 用户角色; 对不同角色可配置不同策略。 直播领域可取值： 房管：ADMIN、 主播：HOST、 系统角色：SYSTEM； 游戏领域可取值：
-	 * 管理员：ADMIN、 普通用户：USER； 缺失或者默认普通用户：USER
+	 * User role; different strategies can be configured per role. Live: ADMIN (room admin), HOST (streamer), SYSTEM. Game: ADMIN, USER (default).
 	 */
 	@JsonProperty("role")
 	private String role = "USER";
 
 	/**
-	 * 讨论的话题编号； 可为书评区编号、论坛帖子编号
+	 * Discussion topic id, e.g. a book-review section or forum post id.
 	 */
 	@JsonProperty("topic")
 	private String topic;
 
 	/**
-	 * 是否为优质（如付费）用户；配置不同等级，标识用户质量，可能取值：优质账号：1、默认值：0
+	 * Whether the user is a premium (e.g. paid) user. premium=1, default=0.
 	 */
 	@JsonProperty("isPremiumUser")
 	private int isPremiumUser = 0;

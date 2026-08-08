@@ -18,69 +18,74 @@ package com.ishumei.spring.boot;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 
 /**
- * https://www.ishumei.com/
- * 
+ * Configuration properties for the Shumei (数美) anti-fraud/content-moderation service.
+ * <p>See <a href="https://www.ishumei.com/">https://www.ishumei.com/</a>.
+ *
  * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @ConfigurationProperties(ShumeiAntiFraudProperties.PREFIX)
 public class ShumeiAntiFraudProperties {
 
+	/** Configuration prefix. */
 	public static final String PREFIX = "shumei.anti-fraud";
 
 	/**
-	 * 应用标识： 用于区分相同公司的不同应用，该参数传递值可与数美服务协商用于区分应用，默认应用值：default
+	 * Application id used to distinguish different applications of the same company. Agreed with
+	 * Shumei; defaults to {@code default}.
 	 */
 	private String appId;
 	/**
-	 * 公司密钥：用于权限认证，开通账号服务时由数美提供
+	 * Company access key used for authentication; provided by Shumei when the account is opened.
 	 */
 	private String accessKey;
 	/**
-	 * 平台业务类型，可选值(必须大写) 直播：ZHIBO 电商：ECOM 游戏：GAME 新闻资讯 ：NEWS 论坛：FORUM 社交 ：SOCIAL
+	 * Platform business type (must be uppercase):
+	 * live={@code ZHIBO}, e-commerce={@code ECOM}, game={@code GAME},
+	 * news={@code NEWS}, forum={@code FORUM}, social={@code SOCIAL}.
 	 */
 	private String type;
-	/**
-	 * 文本识别过滤时的渠道值
-	 */
+	/** Channel value used for text moderation. */
 	private String channelTxt;
-	/**
-	 * 图片识别过滤时的渠道值
-	 */
+	/** Channel value used for image moderation. */
 	private String channelImg;
-	/**
-	 * 音频识别过滤时的渠道值
-	 */
+	/** Channel value used for audio moderation. */
 	private String channelAudio;
-	/**
-	 * 视频识别过滤时的渠道值
-	 */
+	/** Channel value used for video moderation. */
 	private String channelVideo;
 	/**
-	 * 文本识别请求地址；默认：http://api-text-bj.fengkongcloud.com/v2/saas/anti_fraud/text
+	 * Text moderation endpoint.
+	 * Defaults to {@code http://api-text-bj.fengkongcloud.com/v2/saas/anti_fraud/text}.
 	 */
 	private String antiFraudTxtUrl = "http://api-text-bj.fengkongcloud.com/v2/saas/anti_fraud/text";
 	/**
-	 * 图片识别请求地址；默认：http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img
+	 * Image moderation endpoint.
+	 * Defaults to {@code http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img}.
 	 */
 	private String antiFraudImgUrl = "http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/img";
 	/**
-	 * 批量图片识别请求地址；默认：http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/imgs
+	 * Batch image moderation endpoint.
+	 * Defaults to {@code http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/imgs}.
 	 */
 	private String antiFraudImgsUrl = "http://api-img-bj.fengkongcloud.com/v2/saas/anti_fraud/imgs";
 	/**
-	 * 音频识别请求地址；默认：http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio
+	 * Audio moderation endpoint.
+	 * Defaults to {@code http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio}.
 	 */
 	private String antiFraudAudioUrl = "http://api-audio-bj.fengkongcloud.com/v2/saas/anti_fraud/audio";
 	/**
-	 * 音频流识别请求地址；默认：http://api-audiostream-bj.fengkongcloud.com/v2/saas/anti_fraud/audiostream
+	 * Audio-stream moderation endpoint.
+	 * Defaults to {@code http://api-audiostream-bj.fengkongcloud.com/v2/saas/anti_fraud/audiostream}.
 	 */
 	private String antiFraudAudioStreamUrl = "http://api-audiostream-bj.fengkongcloud.com/v2/saas/anti_fraud/audiostream";
 	/**
-	 * 视频识别请求地址；默认：http://api-video-bj.fengkongcloud.com/v2/saas/anti_fraud/video
+	 * Video moderation endpoint.
+	 * Defaults to {@code http://api-video-bj.fengkongcloud.com/v2/saas/anti_fraud/video}.
 	 */
 	private String antiFraudVideoUrl = "http://api-video-bj.fengkongcloud.com/v2/saas/anti_fraud/video";
 	/**
-	 * 视频流识别请求地址；默认：http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream
+	 * Video-stream moderation endpoint.
+	 * Defaults to {@code http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream}.
 	 */
 	private String antiFraudVideoStreamUrl = "http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream";
 

@@ -23,27 +23,50 @@ import org.springframework.beans.BeanUtils;
 import java.util.Objects;
 
 /**
- * 	数美接口集成
- * https://www.ishumei.com/help/documents.html?id=21110
+ * Base class for Shumei (数美) anti-fraud operation helpers.
+ * <p>See <a href="https://www.ishumei.com/help/documents.html?id=21110">the API overview</a>.</p>
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @Slf4j
 public abstract class ShumeiAntiFraudOperations {
 
+	/** {@code application/json} content-type value. */
 	public final static String APPLICATION_JSON_VALUE = "application/json";
+	/** {@code application/json;charset=UTF-8} content-type value. */
 	public final static String APPLICATION_JSON_UTF8_VALUE = "application/json;charset=UTF-8";
+	/** {@code application/json} media type. */
 	public final static MediaType APPLICATION_JSON = MediaType.parse(APPLICATION_JSON_VALUE);
+	/** {@code application/json;charset=UTF-8} media type. */
 	public final static MediaType APPLICATION_JSON_UTF8 = MediaType.parse(APPLICATION_JSON_UTF8_VALUE);
 
+	/** The shared template used to invoke the Shumei APIs. */
 	protected ShumeiAntiFraudTemplate template;
 
+	/**
+	 * Creates an operation helper bound to the given template.
+	 * @param template the template used to execute Shumei requests
+	 */
 	public ShumeiAntiFraudOperations(ShumeiAntiFraudTemplate template) {
 		this.template = template;
 	}
 
+	/**
+	 * Returns the underlying template.
+	 * @return the template used to execute Shumei requests
+	 */
 	public ShumeiAntiFraudTemplate getTemplate() {
 		return template;
 	}
 
+	/**
+	 * Parses the given JSON into an instance of {@code cls}; returns a default instance on failure.
+	 * @param <T> the target type
+	 * @param json the JSON string
+	 * @param cls the target class
+	 * @return the parsed instance, or a default instance when parsing fails
+	 */
 	public <T> T readValue(String json, Class<T> cls) {
 		try {
 			if(Objects.isNull(json)){
@@ -57,6 +80,14 @@ public abstract class ShumeiAntiFraudOperations {
 		}
 	}
 
+	/**
+	 * POSTs the given parameters as JSON to the Shumei API and parses the response.
+	 * @param <T> the response type
+	 * @param url the API endpoint URL
+	 * @param params the request parameters object
+	 * @param cls the response class
+	 * @return the parsed response, or a default instance on failure
+	 */
 	public <T> T requestInvoke(String url, Object params, Class<T> cls) {
 		long start = System.currentTimeMillis();
 		T res = null;

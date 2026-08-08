@@ -26,16 +26,33 @@ import com.ishumei.spring.boot.model.AntiFraudVideoResponse;
 import lombok.extern.slf4j.Slf4j;
 
 /**
+ * Video moderation operations for the Shumei (数美) anti-fraud service.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
  */
 @Slf4j
 public class ShumeiAntiFraudVideoOperations extends ShumeiAntiFraudOperations {
 
+	/**
+	 * Creates video-moderation operations bound to the given template.
+	 * @param timTemplate the template used to execute Shumei requests
+	 */
 	public ShumeiAntiFraudVideoOperations(ShumeiAntiFraudTemplate timTemplate) {
 		super(timTemplate);
 	}
 	private static final String URL = "https://kding-lan.oss-cn-hangzhou.aliyuncs.com/feed/2020-12/video/1608371840629.mp4";
 	private static final String ACCESS_KEY = "{ACCESS_KEY";
 
+	/**
+	 * Submits a video-moderation request.
+	 * @param type platform business type (uppercase)
+	 * @param tokenId unique client user id (for behaviour analysis)
+	 * @param img placeholder for the video file
+	 * @return the moderation response
+	 * @throws UnsupportedEncodingException when encoding fails
+	 * @throws IOException when an I/O error occurs
+	 */
 	public AntiFraudVideoResponse antiFraud(String type, String tokenId, File img) throws UnsupportedEncodingException, IOException {
 		AntiFraudVideoRequest payload = new AntiFraudVideoRequest();
 		payload.setAccessKey(getTemplate().getProperties().getAccessKey());

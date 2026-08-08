@@ -23,47 +23,49 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Model class for AntiFraudImageRequestData.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudImageRequestData extends AntiFraudRequestData {
 
 	/**
-	 * 要检测的图片； 可使用图片的base64编码或者图片的url链接；
-	 * 支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；
-	 * 建议图片像素不小于256*256
+	 * Image to check: a Base64-encoded string or a URL. Supports jpg, jpeg, jp2, png, webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
 	 */
 	@JsonProperty("img")
 	private String img;
 	
 	/**
-	 * 要检测的图片数组，要求数组长度在 100 以内； 可使用图片的base64编码或者图片的url链接；
-	 * 支持格式：jpg，jpeg，jp2，png，webp，gif，bmp，tiff，tif，dib，ppm，pgm，pbm，hdr，pic；
-	 * 建议图片像素不小于256*256
+	 * Image array to check (length <= 100): Base64-encoded strings or URLs. Supports jpg, jpeg, jp2, png, webp, gif, bmp, tiff, tif, dib, ppm, pgm, pbm, hdr, pic. Recommended at least 256x256 pixels.
 	 */
 	@JsonProperty("imgs")
 	private List<AntiFraudImageRequestItem> imgs;
 
 	/**
-	 * 用户指定的图片标识；当callback存在时，在回调请求中向用户返回；不支持特殊字符
+	 * User-specified image id; returned in the callback when one is configured; special characters are not supported.
 	 */
 	@JsonProperty("btId")
 	private String btId;
 
 	/**
-	 * 用户的性别，可选值：女性：0，男性：1
+	 * User gender. female=0, male=1.
 	 */
 	@JsonProperty("sex")
 	private int sex;
 
 	/**
-	 * 用户的年龄，可选值：青年（大约18-45岁）：0、中年（大约45-60岁）：1、老年（大于60岁）：2
+	 * User age group. youth(~18-45)=0, middle(45-60)=1, senior(60+)=2.
 	 */
 	@JsonProperty("age")
 	private int age = 0;
 
 	/**
-	 * 用户android设备唯一标识；相比tokenId和IP，imei和mac更难被更换，当恶意用户使用多个不同账户和IP进作恶时，通过imei和mac能够有效关联识别此类恶意行为，同时可用于比对数美设备黑名单
+	 * Android device id (IMEI). Harder to change than tokenId/IP, so it helps correlate malicious behaviour across accounts/IPs and can be matched against Shumei's device blacklist.
 	 */
 	@JsonProperty("imei")
 	private String imei;
@@ -74,7 +76,7 @@ public class AntiFraudImageRequestData extends AntiFraudRequestData {
 	private String mac;
 
 	/**
-	 * 用户iOS应用唯一标识，相比tokenId和IP，idfv不能被修改，当恶意用户使用多个不同账户和IP进行恶意行为时，使用idfv能够发现和识别此类恶意行为
+	 * iOS application id (IDFV). Cannot be modified, so it helps detect malicious behaviour across accounts/IPs.
 	 */
 	@JsonProperty("idfv")
 	private String idfv;
@@ -85,13 +87,13 @@ public class AntiFraudImageRequestData extends AntiFraudRequestData {
 	private String idfa;
 
 	/**
-	 * 最大截帧数量;GIF图检测专用，默认值为20;当interval*maxFrame小于该图片所包含的图片数量时，截帧间隔会自动修改为该图片所包含的图片数/maxFrame，以提高整体检测效果
+	 * Maximum frame count for GIF checks (default 20). When interval*maxFrame < frame count the interval is auto-adjusted to frame-count/maxFrame.
 	 */
 	@JsonProperty("maxFrame")
 	private int maxFrame = 20;
 
 	/**
-	 * 截帧频率;GIF图检测专用，默认值为1;每interval张图片抽取一张进行检测
+	 * Frame sampling interval for GIF checks (default 1): one frame is sampled every {@code interval} frames.
 	 */
 	@JsonProperty("interval")
 	private int interval = 1;

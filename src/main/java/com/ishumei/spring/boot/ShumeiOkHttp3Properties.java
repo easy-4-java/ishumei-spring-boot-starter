@@ -12,10 +12,17 @@ import okhttp3.Response;
 import okhttp3.WebSocketListener;
 import okio.Source;
 
+/**
+ * OkHttp3 client configuration properties for the Shumei integration.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @ConfigurationProperties(ShumeiOkHttp3Properties.PREFIX)
 @Data
 public class ShumeiOkHttp3Properties {
 
+	/** Configuration prefix. */
 	public static final String PREFIX = "shumei.okhttp3";
 
 

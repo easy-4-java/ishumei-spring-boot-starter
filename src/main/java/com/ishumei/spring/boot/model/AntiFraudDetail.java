@@ -21,32 +21,37 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Model class for AntiFraudDetail.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @EqualsAndHashCode(callSuper = false)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudDetail {
 
 	/**
-	 * 标识风险类型，可能取值： 正常：0， 涉政：100， 色情：200， 性感：210， 广告：300， 二维码：310， 水印：320， 暴恐：400，
-	 * 违规：500， 不良场景 ：510， 黑名单：700， 白名单：710， 高危账号：800， 自定义：900
+	 * Risk type. Values: normal=0, political=100, porn=200, sexy=210, ad=300, qrcode=310, watermark=320, violence=400, violation=500, bad-scene=510, blacklist=700, whitelist=710, high-risk-account=800, custom=900.
 	 */
 	@JsonProperty("riskType")
 	private int riskType;
 
 	/**
-	 * 策略规则标识; 用来标识命中的策略规则; 注：该参数为旧版API返回参数，兼容保留，后续版本会取消，请勿依赖此参数，仅供参考
+	 * Strategy rule id identifying the matched rule. Legacy API field kept for compatibility; do not depend on it.
 	 */
 	@JsonProperty("model")
 	private String model;
 	
 	/**
-	 * 拦截的风险原因解释;仅供人了解风险原因时作为参考，程序请勿依赖该参数的值做逻辑处理
+	 * Human-readable explanation of the risk reason; for reference only, do not use in logic.
 	 */
 	@JsonProperty("description")
 	private String description;
 	
 	/**
-	 * 新版策略规则风险原因描述；注：该参数为新版API返回参数，过渡阶段只有新策略才会返回
+	 * New strategy rule risk description (new API field; only new strategies return it during transition).
 	 */
 	@JsonProperty("descriptionV2")
 	private String descriptionV2;

@@ -21,13 +21,19 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 
+/**
+ * Model class for AntiFraudImageRequest.
+ *
+ * @author [@Loong Wan](https://github.com/loong10k)
+ * @since 1.0.0
+ */
 @Data
 @EqualsAndHashCode(callSuper = true)
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AntiFraudImageRequest extends AntiFraudRequest {
 
 	/**
-	 * 请求数据内容，最长1MB
+	 * Request data content; up to 1MB.
 	 */
 	@JsonProperty("data")
 	private AntiFraudImageRequestData data;
