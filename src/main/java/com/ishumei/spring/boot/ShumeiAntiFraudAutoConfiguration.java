@@ -17,7 +17,7 @@ import okhttp3.OkHttpClient;
 /**
  * Spring Boot auto-configuration for the Shumei (数美) anti-fraud/content-moderation service.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Configuration

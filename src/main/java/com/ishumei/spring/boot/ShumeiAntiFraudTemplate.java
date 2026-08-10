@@ -8,7 +8,7 @@ import okhttp3.OkHttpClient;
  * Core template for invoking the Shumei (数美) anti-fraud APIs.
  * <p>Exposes grouped operation helpers for text, image and video moderation.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 public class ShumeiAntiFraudTemplate {

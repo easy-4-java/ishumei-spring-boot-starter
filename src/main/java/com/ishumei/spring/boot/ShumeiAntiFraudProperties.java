@@ -21,7 +21,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * Configuration properties for the Shumei (数美) anti-fraud/content-moderation service.
  * <p>See <a href="https://www.ishumei.com/">https://www.ishumei.com/</a>.
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @ConfigurationProperties(ShumeiAntiFraudProperties.PREFIX)

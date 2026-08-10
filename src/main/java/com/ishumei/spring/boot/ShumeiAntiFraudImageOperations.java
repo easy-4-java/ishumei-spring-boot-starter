@@ -38,7 +38,7 @@ import lombok.extern.slf4j.Slf4j;
  * Image moderation operations for the Shumei (数美) anti-fraud service.
  * <p>See <a href="https://www.ishumei.com/help/documents.html?id=21210">the image API reference</a>.</p>
  *
- * @author [@Loong Wan](https://github.com/loong10k)
+ * @author <a href="https://github.com/loong10k">Loong Wan</a>
  * @since 1.0.0
  */
 @Slf4j
