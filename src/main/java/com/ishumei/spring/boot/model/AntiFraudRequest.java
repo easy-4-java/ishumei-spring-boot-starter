@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Moderation request base.
- */
+
 /**
  * Model class for AntiFraudRequest.
  *

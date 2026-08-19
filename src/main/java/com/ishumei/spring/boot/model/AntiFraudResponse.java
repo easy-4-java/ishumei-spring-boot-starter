@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Moderation response result.
- */
+
 /**
  * Model class for AntiFraudResponse.
  *
@@ -61,18 +59,34 @@ public class AntiFraudResponse {
 	 */
 	@JsonProperty("detail")
 	private String detail;
+	/**
+	 * <p>Is success.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isSuccess() {
 		return status == 0 && code.equals("1100");
 	}
+	/**
+	 * <p>Is pass.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isPass() {
 		return isSuccess() && riskLevel.equals("PASS");
 	}
+	/**
+	 * <p>Is review.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isReview() {
 		return isSuccess() && riskLevel.equals("REVIEW");
 	}
+	/**
+	 * <p>Is reject.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isReject() {
 		return isSuccess() && riskLevel.equals("REJECT");

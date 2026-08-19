@@ -88,114 +88,142 @@ public class ShumeiAntiFraudProperties {
 	 * Defaults to {@code http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream}.
 	 */
 	private String antiFraudVideoStreamUrl = "http://api-videostream-bj.fengkongcloud.com/v3/saas/anti_fraud/videostream";
+	/** Gets the app id. */
 
 	public String getAppId() {
 		return appId;
 	}
+	/** Sets the app id. */
 
 	public void setAppId(String appId) {
 		this.appId = appId;
 	}
+	/** Gets the access key. */
 
 	public String getAccessKey() {
 		return accessKey;
 	}
+	/** Sets the access key. */
 
 	public void setAccessKey(String accessKey) {
 		this.accessKey = accessKey;
 	}
+	/** Gets the type. */
 
 	public String getType() {
 		return type;
 	}
+	/** Sets the type. */
 
 	public void setType(String type) {
 		this.type = type;
 	}
+	/** Gets the channel txt. */
 
 	public String getChannelTxt() {
 		return channelTxt;
 	}
+	/** Sets the channel txt. */
 
 	public void setChannelTxt(String channelTxt) {
 		this.channelTxt = channelTxt;
 	}
+	/** Gets the channel img. */
 
 	public String getChannelImg() {
 		return channelImg;
 	}
+	/** Sets the channel img. */
 
 	public void setChannelImg(String channelImg) {
 		this.channelImg = channelImg;
 	}
+	/** Gets the channel audio. */
 
 	public String getChannelAudio() {
 		return channelAudio;
 	}
+	/** Sets the channel audio. */
 
 	public void setChannelAudio(String channelAudio) {
 		this.channelAudio = channelAudio;
 	}
+	/** Gets the channel video. */
 
 	public String getChannelVideo() {
 		return channelVideo;
 	}
+	/** Sets the channel video. */
 
 	public void setChannelVideo(String channelVideo) {
 		this.channelVideo = channelVideo;
 	}
+	/** Gets the anti fraud txt url. */
 
 	public String getAntiFraudTxtUrl() {
 		return antiFraudTxtUrl;
 	}
+	/** Sets the anti fraud txt url. */
 
 	public void setAntiFraudTxtUrl(String antiFraudTxtUrl) {
 		this.antiFraudTxtUrl = antiFraudTxtUrl;
 	}
+	/** Gets the anti fraud img url. */
 
 	public String getAntiFraudImgUrl() {
 		return antiFraudImgUrl;
 	}
+	/** Sets the anti fraud img url. */
 
 	public void setAntiFraudImgUrl(String antiFraudImgUrl) {
 		this.antiFraudImgUrl = antiFraudImgUrl;
 	}
+	/** Gets the anti fraud imgs url. */
 	
 	public String getAntiFraudImgsUrl() {
 		return antiFraudImgsUrl;
 	}
+	/** Sets the anti fraud imgs url. */
 
 	public void setAntiFraudImgsUrl(String antiFraudImgsUrl) {
 		this.antiFraudImgsUrl = antiFraudImgsUrl;
 	}
+	/** Gets the anti fraud audio url. */
 
 	public String getAntiFraudAudioUrl() {
 		return antiFraudAudioUrl;
 	}
+	/** Sets the anti fraud audio url. */
 
 	public void setAntiFraudAudioUrl(String antiFraudAudioUrl) {
 		this.antiFraudAudioUrl = antiFraudAudioUrl;
 	}
+	/** Gets the anti fraud audio stream url. */
 
 	public String getAntiFraudAudioStreamUrl() {
 		return antiFraudAudioStreamUrl;
 	}
+	/** Sets the anti fraud audio stream url. */
 
 	public void setAntiFraudAudioStreamUrl(String antiFraudAudioStreamUrl) {
 		this.antiFraudAudioStreamUrl = antiFraudAudioStreamUrl;
 	}
+	/** Gets the anti fraud video url. */
 
 	public String getAntiFraudVideoUrl() {
 		return antiFraudVideoUrl;
 	}
+	/** Sets the anti fraud video url. */
 
 	public void setAntiFraudVideoUrl(String antiFraudVideoUrl) {
 		this.antiFraudVideoUrl = antiFraudVideoUrl;
 	}
+	/** Gets the anti fraud video stream url. */
 
 	public String getAntiFraudVideoStreamUrl() {
 		return antiFraudVideoStreamUrl;
 	}
+	/** Sets the anti fraud video stream url. */
 
 	public void setAntiFraudVideoStreamUrl(String antiFraudVideoStreamUrl) {
 		this.antiFraudVideoStreamUrl = antiFraudVideoStreamUrl;

@@ -7,9 +7,7 @@ import lombok.Data;
 
 import java.util.Objects;
 
-/**
- * Moderation response result.
- */
+
 /**
  * Model class for AntiFraudImageResponse.
  *
@@ -65,18 +63,34 @@ public class AntiFraudImageResponse {
 	 */
 	@JsonProperty("detail")
 	private AntiFraudImageDetail detail;
+	/**
+	 * <p>Is success.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isSuccess() {
 		return status == 0 && Objects.nonNull(code) && code.equals("1100");
 	}
+	/**
+	 * <p>Is pass.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isPass() {
 		return isSuccess() && riskLevel.equals("PASS");
 	}
+	/**
+	 * <p>Is review.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isReview() {
 		return isSuccess() && riskLevel.equals("REVIEW");
 	}
+	/**
+	 * <p>Is reject.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isReject() {
 		return isSuccess() && riskLevel.equals("REJECT");

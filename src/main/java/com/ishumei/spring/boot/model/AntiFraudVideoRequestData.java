@@ -48,5 +48,4 @@ public class AntiFraudVideoRequestData extends AntiFraudRequestData{
 //	private String tokenId;
 
 
-
 }

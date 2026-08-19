@@ -5,9 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.Data;
 
-/**
- * Moderation response result.
- */
+
 /**
  * Model class for AntiFraudVideoResponse.
  *
@@ -36,7 +34,6 @@ public class AntiFraudVideoResponse {
 	 */
 	@JsonProperty("requestId")
 	private String requestId;
-
 
 
 }

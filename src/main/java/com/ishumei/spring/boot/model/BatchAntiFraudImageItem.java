@@ -6,9 +6,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Moderation response result.
- */
+
 /**
  * Model class for BatchAntiFraudImageItem.
  *
@@ -60,14 +58,26 @@ public class BatchAntiFraudImageItem {
 	 */
 	@JsonProperty("score")
 	private int score;
+	/**
+	 * <p>Is pass.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isPass() {
 		return code.equals("1100") && riskLevel.equals("PASS");
 	}
+	/**
+	 * <p>Is review.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isReview() {
 		return code.equals("1100") && riskLevel.equals("REVIEW");
 	}
+	/**
+	 * <p>Is reject.</p>
+	 * @return the boolean
+	 */
 	
 	public boolean isReject() {
 		return code.equals("1100") && riskLevel.equals("REJECT");

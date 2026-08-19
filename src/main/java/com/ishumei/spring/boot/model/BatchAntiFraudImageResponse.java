@@ -9,9 +9,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 
 import lombok.Data;
 
-/**
- * Moderation response result.
- */
+
 /**
  * Model class for BatchAntiFraudImageResponse.
  *
@@ -52,6 +50,10 @@ public class BatchAntiFraudImageResponse {
 	 */
 	@JsonProperty("statistics")
 	private List<Integer> statistics;
+	/**
+	 * <p>Is success.</p>
+	 * @return the boolean
+	 */
 
 	public boolean isSuccess() {
 		return Objects.nonNull(code) && code.equals("1100");
